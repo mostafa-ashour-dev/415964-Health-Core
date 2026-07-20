@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --background-primary: #EFEFEF;
+  --background-secondary: #F6F6F6;
+  --background-disabled: #b0b0b0;
+
+  --text-primary: #1e1e1e;
+  --text-secondary: #999999;
+  --text-disabled: #808080;
+
+  --accent-primary: #0084FF;
+  --accent-secondary: #ffffff;
+
+  --border-primary: #e5e5e5;
+
+  
+  --transition-duration: 0.2s; 
+
+  --padding-button: 10px 30px; 
+  --padding-input: 16px 40px; 
+
+  --border-radius-classic: 5px;  
+  --border-radius-card-classic: 20px;
+  --border-radius-card-modern: 30px;
+
+  --base-spinner-size: 30px;
+
+  --font-primary-app: 'Onest', sans-serif;
+}
+
+@theme inline {
+  --color-body_background_primary: var(--background-primary);
+  --color-body_background_secondary: var(--background-secondary);
+  --color-body_background_disabled: var(--background-disabled);
+
+  --color-body_text_primary: var(--text-primary);
+  --color-body_text_muted: var(--text-secondary);
+  --color-body_text_disabled: var(--text-disabled); 
+
+  --color-body_accent_primary: var(--accent-primary);
+  --color-body_accent_secondary: var(--accent-secondary);
+
+  --color-body_border_primary: var(--border-primary);
+
+  --font-body_font_primary: var(--font-primary-app);
+  
+
+  --default-transition-duration: var(--transition-duration);
+
+  --spacing-button: var(--padding-button);
+  --spacing-input: var(--padding-input);
+
+  --radius-button_classic: var(--border-radius-classic);
+  --radius-card_classic: var(--border-radius-card-classic);
+  --radius-card_modern: var(--border-radius-card-modern);
+} 
+ 
+ 
+body {
+  background: var(--color-body_background_primary);
+  font-family: var(--font-body_font_primary);
+  color: var(--color-body_text_primary);
+}
+ 
+
+button, link, a {
+  cursor: pointer; 
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-body_accent_secondary) inset !important;
+  box-shadow: 0 0 0px 1000px var(--color-body_accent_secondary) inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+}

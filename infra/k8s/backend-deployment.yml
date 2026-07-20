@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+        - name: backend
+
+          image: backend:latest
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 5000
+
+          env:
+
+            - name: NODE_ENV
+              value: "production"
+
+            - name: DB_CONNECTION_STRING
+              value: "mongodb://mongodb:27017/hospital"
+
+            - name: ACCESS_TOKEN_SECRET
+              value: "77d3953ac8e9f4b0fd92782bd004beb7c2cef6e62373917e5b46163b0cc09886"
+          
+            - name: REFRESH_TOKEN_SECRET
+              value: b764c6db2616fcf9836b8212b49af0a8873832746a23a07f0d12d30def415cd8caed21425359a28bf464a2b8a9cafde4773e5a71abc4f0c118d6a1b98ab78be4

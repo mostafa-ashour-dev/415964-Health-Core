@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+
+  frontend:
+    build:
+      context: ../frontend
+      args:
+        VITE_BACKEND_BASE_URL: https://api.hospital.local/api
+
+    ports:
+      - "3000:4173"
+
+  backend:
+    build:
+      context: ../backend
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      NODE_ENV: production
+      DB_CONNECTION_STRING: mongodb://mongodb:27017/hospital
+      ACCESS_TOKEN_SECRET: 77d3953ac8e9f4b0fd92782bd004beb7c2cef6e62373917e5b46163b0cc09886
+      REFRESH_TOKEN_SECRET: b764c6db2616fcf9836b8212b49af0a8873832746a23a07f0d12d30def415cd8caed21425359a28bf464a2b8a9cafde4773e5a71abc4f0c118d6a1b98ab78be4
+
+    depends_on:
+      - mongodb
+
+  appointment-service:
+    build:
+      context: ../microservices/appointment-service
+
+    ports:
+      - "4001:4001"
+
+    environment:
+      NODE_ENV: production
+      DB_CONNECTION_STRING: mongodb://mongodb:27017/hospital
+      ACCESS_TOKEN_SECRET: 77d3953ac8e9f4b0fd92782bd004beb7c2cef6e62373917e5b46163b0cc09886
+      REFRESH_TOKEN_SECRET: b764c6db2616fcf9836b8212b49af0a8873832746a23a07f0d12d30def415cd8caed21425359a28bf464a2b8a9cafde4773e5a71abc4f0c118d6a1b98ab78be4
+
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:8
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

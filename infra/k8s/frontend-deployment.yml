@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+        - name: frontend
+
+          image: frontend:latest
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 4173
+
+          env:
+
+            - name: VITE_BACKEND_BASE_URL
+              value: "https://api.hospital.local/api"
