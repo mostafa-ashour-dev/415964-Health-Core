@@ -29,8 +29,6 @@ export default function BookAppointmentPage() {
     timeslot: "",
   });
 
-  console.log(inputsValues);
-
   const { data: departments, isLoading: isDepartmentsLoading } =
     useGetDepartments();
   const { data: timeslots = [], isLoading: isTimeslotsLoading } =
@@ -42,8 +40,6 @@ export default function BookAppointmentPage() {
     label: patient.full_name,
     value: patient._id,
   }));
-
-  console.log(patientsInputOptions);
 
   const departmentsInputOptions = departments?.data
     ?.filter((department) => department.doctors.length > 0)

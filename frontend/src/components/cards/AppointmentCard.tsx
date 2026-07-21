@@ -128,6 +128,7 @@ export const Dropdown = ({
 
       <Button
         variant="button_modern_secondary"
+        ariaLabel="togglebutton"
         className="!text-body_text_muted !bg-transparent !p-0 !absolute top-[15px] right-[20px] z-20"
         onClick={handleToggleShowDropdown}
       >
