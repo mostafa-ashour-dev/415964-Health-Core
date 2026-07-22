@@ -51,6 +51,11 @@ jobs:
       - run: npm install
 
       - run: npm run test:coverage
+        env:
+          NODE_ENV: test
+          DB_CONNECTION_STRING: mongodb://127.0.0.1:27017/hospital-test
+          ACCESS_TOKEN_SECRET: test-secret
+          REFRESH_TOKEN_SECRET: test-refresh-secret
 
       - uses: codecov/codecov-action@v5
         with:
@@ -74,6 +79,11 @@ jobs:
       - run: npm install
 
       - run: npm run test:coverage
+        env:
+          NODE_ENV: test
+          DB_CONNECTION_STRING: mongodb://127.0.0.1:27017/hospital-test
+          ACCESS_TOKEN_SECRET: test-secret
+          REFRESH_TOKEN_SECRET: test-refresh-secret
 
       - uses: codecov/codecov-action@v5
         with:
