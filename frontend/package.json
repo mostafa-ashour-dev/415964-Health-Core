@@ -10,14 +10,14 @@
     "preview": "vite preview",
     "test": "npx jest",
     "test:watch": "npx jest --watch",
-    "test:coverage": "npx jest --coverage"
+    "test:coverage": "npx jest --coverage",
+    "lighthouse": "npx lhci autorun"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.3.2",
     "@tanstack/react-query": "^5.101.2",
     "axios": "^1.18.1",
-    "cypress": "^15.18.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
@@ -32,6 +32,7 @@
     "@babel/preset-react": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
     "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.15.1",
     "@rolldown/plugin-babel": "^0.2.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -44,6 +45,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "babel-jest": "^30.4.1",
     "babel-plugin-react-compiler": "^1.0.0",
+    "cypress": "^15.19.0",
     "eslint": "^10.6.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",

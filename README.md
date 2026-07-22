@@ -1,4 +1,4 @@
-# 🏥 Healthcare System
+# 🏥 Hospital Core
 
 A full-stack healthcare management platform built with a microservices architecture. The system allows patients to book appointments, doctors to manage and respond to appointment requests, and administrators to oversee healthcare operations.
 
@@ -19,43 +19,28 @@ The project demonstrates modern software engineering practices including:
 
 ## 📋 Table of Contents
 
-- [Architecture Overview](#architecture-overview)
-- [Project Structure](#project-structure)
-- [Services](#services)
-- [Dependencies](#dependencies)
-- [Environment Variables](#environment-variables)
-- [Running Locally](#running-locally)
-- [Docker Setup](#docker-setup)
-- [Kubernetes Setup](#kubernetes-setup)
-- [Ingress Networking](#ingress-networking)
-- [TLS Encryption](#tls-encryption)
-- [CI/CD Pipeline](#cicd-pipeline)
-- [Deployment Links](#deployment-links)
+- [Architecture Overview](#-architecture-overview)
+- [Project Structure](#-project-structure)
+- [Services](#-services)
+- [Dependencies](#-dependencies)
+- [Documentation](#-documentation)
+- [Deployment Links](#-deployment-links)
 
 ---
 
-# 🏗️ Architecture Overview
+## 🏗️ Architecture Overview
 
-```text
-Client Browser
-      │
-      ▼
-hospital.local
-      │
-      ▼
-NGINX Ingress Controller
-      │
- ┌────┴────┐
- ▼         ▼
+### Data Flow Map
 
-Frontend   Backend Service
-            │
-            ▼
-   Appointment Service
-            │
-            ▼
-        MongoDB
-```
+![Data Flow Map](./docs/assets/d1.png)
+
+### Container Boundary & Kubernetes Topology Map
+
+![Container Boundary & Kubernetes Topology Map](./docs/assets/d2.png)
+
+### Namespace & External Routing Topology Map
+
+![Namespace & External Routing Topology Map](./docs/assets/d3.png)
 
 ### Infrastructure Components
 
@@ -73,10 +58,10 @@ Frontend   Backend Service
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
-hospital/
+hospital-core/
 │
 ├── frontend/
 │
@@ -87,22 +72,22 @@ hospital/
 │
 ├── infra/
 │   ├── docker-compose.yml
-│   ├── deployments/
-│   ├── services/
-│   ├── ingress/
-│   └── tls/
+│   └── k8s/
 │
-├── .github/
-│   └── workflows/
+├── docs/
+│   ├── env.md
+│   ├── setup.md
+│   └── api.md
 │
-└── package.json
+├── README.md
+└── CHANGELOG.md
 ```
 
 ---
 
-# 🔧 Services
+## 🔧 Services
 
-## Frontend
+### Frontend
 
 Responsible for:
 
@@ -113,9 +98,7 @@ Responsible for:
 - Appointment Management
 - API Communication
 
----
-
-## Backend Service
+### Backend Service
 
 Responsible for:
 
@@ -124,16 +107,9 @@ Responsible for:
 - JWT Tokens
 - User Management
 - Doctor Management
+- Routing requests to the Appointment Service (for appointment/timeslot routes)
 
-Base Route:
-
-```text
-/api/auth
-```
-
----
-
-## Appointment Service
+### Appointment Service
 
 Responsible for:
 
@@ -142,18 +118,11 @@ Responsible for:
 - Appointment Rejection
 - Timeslot Management
 
-Base Routes:
-
-```text
-/api/appointment
-/api/timeslot
-```
-
 ---
 
-# 📦 Dependencies
+## 📦 Dependencies
 
-## Frontend Dependencies
+### Frontend
 
 | Package | Version |
 |----------|----------|
@@ -168,29 +137,9 @@ Base Routes:
 | tailwindcss | 4.3.2 |
 | @heroicons/react | 2.2.0 |
 
----
+**Key dev/test tooling:** Vite, TypeScript, ESLint, Jest + Testing Library, Cypress, Lighthouse CI (`npm run lighthouse`).
 
-## Backend Dependencies
-
-| Package | Version |
-|----------|----------|
-| express | 5.1.0 |
-| mongoose | 8.18.0 |
-| jsonwebtoken | 9.0.2 |
-| bcryptjs | 3.0.2 |
-| cookie-parser | 1.4.7 |
-| cors | 2.8.5 |
-| dotenv | 17.2.1 |
-| multer | 2.0.2 |
-| cloudinary | 2.7.0 |
-| sharp | 0.34.3 |
-| socket.io | 4.8.1 |
-| axios | 1.11.0 |
-| slugify | 1.6.6 |
-
----
-
-## Appointment Service Dependencies
+### Backend Service
 
 | Package | Version |
 |----------|----------|
@@ -207,267 +156,60 @@ Base Routes:
 | socket.io | 4.8.1 |
 | axios | 1.11.0 |
 | slugify | 1.6.6 |
+| express-async-handler | 1.2.0 |
+| express-rate-limiter | 1.3.1 |
+
+**Key dev/test tooling:** Nodemon, Vite-Node, ESLint + Prettier, Jest + Supertest, mongodb-memory-server (integration tests), ngrok.
+
+### Appointment Service
+
+| Package | Version |
+|----------|----------|
+| express | 5.1.0 |
+| mongoose | 8.18.0 |
+| jsonwebtoken | 9.0.2 |
+| bcryptjs | 3.0.2 |
+| cookie-parser | 1.4.7 |
+| cors | 2.8.5 |
+| dotenv | 17.2.1 |
+| multer | 2.0.2 |
+| cloudinary | 2.7.0 |
+| sharp | 0.34.3 |
+| socket.io | 4.8.1 |
+| axios | 1.11.0 |
+| slugify | 1.6.6 |
+| express-async-handler | 1.2.0 |
+| express-rate-limiter | 1.3.1 |
+
+**Key dev/test tooling:** Nodemon, Vite-Node, ESLint + Prettier, Jest + Supertest, mongodb-memory-server (integration tests), ngrok.
 
 ---
 
-# 🌍 Environment Variables
+## 📚 Documentation
 
-## Backend Service
+Further documentation lives in [`/docs`](./docs):
 
-| Variable | Example | Description |
-|-----------|----------|-------------|
-| NODE_ENV | development | Current environment |
-| PORT | 5000 | Backend server port |
-| DB_CONNECTION_STRING | mongodb://mongodb:27017/hospital | MongoDB connection string |
-| ACCESS_TOKEN_SECRET | your-secret | JWT access token secret |
-| REFRESH_TOKEN_SECRET | your-secret | JWT refresh token secret |
+- [`docs/setup.md`](./docs/setup.md) — running locally, Docker, Kubernetes, testing, and the demo login/workflow.
+- [`docs/env.md`](./docs/env.md) — environment variables for every service.
+- [`docs/api.md`](./docs/api.md) — API route reference.
 
 ---
 
-## Appointment Service
+## 🌎 Deployment Links
 
-| Variable | Example | Description |
-|-----------|----------|-------------|
-| NODE_ENV | development | Current environment |
-| PORT | 4001 | Appointment service port |
-| DB_CONNECTION_STRING | mongodb://mongodb:27017/hospital | MongoDB connection string |
-| ACCESS_TOKEN_SECRET | your-secret | JWT access token secret |
-| REFRESH_TOKEN_SECRET | your-secret | JWT refresh token secret |
-
----
-
-## Frontend
-
-| Variable | Example | Description |
-|-----------|----------|-------------|
-| VITE_BACKEND_BASE_URL | https://api.example.com/api | Backend API URL |
-| VITE_APPOINTMENT_BASE_URL | https://appointment.example.com/api | Appointment API URL |
-
----
-
-# 🚀 Running Locally
-
-## Install Dependencies
-
-```bash
-npm install
-```
-
----
-
-## Run Frontend
-
-```bash
-npm run dev:frontend
-```
-
----
-
-## Run Backend
-
-```bash
-npm run dev:backend
-```
-
----
-
-## Run Appointment Service
-
-```bash
-npm run dev:appointments
-```
-
----
-
-## Run Entire Project
-
-```bash
-npm run dev:all
-```
-
----
-
-# 🐳 Docker Setup
-
-Build and run all services:
-
-```bash
-docker compose up --build
-```
-
-Infrastructure services:
-
-- Frontend Container
-- Backend Container
-- Appointment Service Container
-- MongoDB Container
-
----
-
-# ☸️ Kubernetes Setup
-
-The project is deployed to a local Kubernetes cluster (Minikube).
-
-### Kubernetes Resources
-
-| Resource | Purpose |
-|-----------|----------|
-| Deployment | Pod Management |
-| Service | Internal Networking |
-| ReplicaSet | High Availability |
-| Secret | TLS Certificates |
-| Ingress | External Traffic Routing |
-
----
-
-## Deployments
-
-### Frontend Deployment
-
-```yaml
-replicas: 3
-```
-
-### Backend Deployment
-
-```yaml
-replicas: 3
-```
-
-### Appointment Service Deployment
-
-```yaml
-replicas: 3
-```
-
-### MongoDB Deployment
-
-```yaml
-replicas: 1
-```
-
----
-
-# 🌐 Ingress Networking
-
-NGINX Ingress Controller is used as the single entry point to the cluster.
-
-### Routing Rules
-
-| Path | Service |
-|--------|----------|
-| `/` | Frontend Service |
-| `/api/auth` | Backend Service |
-| `/api/users` | Backend Service |
-| `/api/doctors` | Backend Service |
-| `/api/appointment` | Appointment Service |
-| `/api/timeslot` | Appointment Service |
-
-Example:
-
-```text
-https://hospital.local
-```
-
-Routes to:
-
-```text
-frontend-service
-```
-
-Example:
-
-```text
-https://hospital.local/api/auth/login
-```
-
-Routes to:
-
-```text
-backend-service
-```
-
-Example:
-
-```text
-https://hospital.local/api/appointment
-```
-
-Routes to:
-
-```text
-appointment-service
-```
-
----
-
-# 🔒 TLS Encryption
-
-The system uses HTTPS through Kubernetes TLS Secrets.
-
-### Process
-
-1. Generate self-signed certificate.
-2. Create Kubernetes TLS Secret.
-3. Reference Secret inside Ingress manifest.
-4. All traffic is encrypted using HTTPS.
-
-Example:
-
-```yaml
-tls:
-  - hosts:
-      - hospital.local
-    secretName: hospital-tls
-```
-
----
-
-# 🔄 CI/CD Pipeline
-
-GitHub Actions automatically:
-
-1. Runs ESLint
-2. Runs Jest Tests
-3. Builds Frontend
-4. Builds Backend
-5. Builds Appointment Service
-6. Builds Docker Images
-7. Deploys Infrastructure
-
-Workflow Location:
-
-```text
-.github/workflows/
-```
-
----
-
-# 🌎 Deployment Links
-
-## Frontend
-
-**Netlify**
+### Frontend (Netlify)
 
 ```text
 [ Add Netlify URL Here ]
 ```
 
----
-
-## Backend
-
-**Vercel / Render**
+### Backend (Vercel / Render)
 
 ```text
 [ Add Backend URL Here ]
 ```
 
----
-
-## Appointment Service
-
-**Vercel / Render**
+### Appointment Service (Vercel / Render)
 
 ```text
 [ Add Appointment Service URL Here ]
@@ -475,7 +217,7 @@ Workflow Location:
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 Developed as part of a Full-Stack Healthcare Infrastructure project demonstrating:
 

@@ -10,7 +10,6 @@ import Patient from "../models/schemas/patient.model";
 
 const createAppointment = async (req, res) => {
     const { specialty, timeslot, doctor,  patient } = req.body;
-    const user = req.user;
 
     const missingFields = returnMissingFields({ specialty, patient, doctor, timeslot });
     if (missingFields.length > 0) {
