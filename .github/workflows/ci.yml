@@ -52,6 +52,7 @@ jobs:
 
       - run: npm run test:coverage
         env:
+          PORT: 5000
           NODE_ENV: test
           DB_CONNECTION_STRING: mongodb://127.0.0.1:27017/hospital-test
           ACCESS_TOKEN_SECRET: test-secret
@@ -80,6 +81,7 @@ jobs:
 
       - run: npm run test:coverage
         env:
+          PORT: 4001
           NODE_ENV: test
           DB_CONNECTION_STRING: mongodb://127.0.0.1:27017/hospital-test
           ACCESS_TOKEN_SECRET: test-secret
