@@ -12,6 +12,6 @@
     "dev:backend": "npm run dev -w backend",
     "dev:appointments": "npm run dev -w microservices/appointment-service",
     "dev:all": "npx concurrently --kill-others-on-fail -n \"FRONT,BACK,APPT\" -c \"cyan,magenta,yellow\" \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:appointments\"",
-    "db:seed": "node seed.db.js"
+    "db:seed": "node backend/utils/seed.utils.js"
   }
 }
