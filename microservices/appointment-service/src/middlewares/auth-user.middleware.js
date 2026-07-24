@@ -1,10 +1,10 @@
-import ResponseError from "../classes/response-error.class";
+import ResponseError from "../classes/response-error.class.js";
 import {
     ACCESS_TOKEN_SECRET,
     REFRESH_TOKEN_SECRET,
-} from "../config/env.config";
+} from "../config/env.config.js";
 import jwt from "jsonwebtoken";
-import User from "../models/schemas/user.model";
+import User from "../models/schemas/user.model.js";
 
 const authUser = (role = "all", type = "access") => async (req, res, next) => {
     try {

@@ -25,9 +25,11 @@ spec:
           imagePullPolicy: Never
 
           ports:
-            - containerPort: 4173
+            - containerPort: 80
 
           env:
 
             - name: VITE_BACKEND_BASE_URL
               value: "https://api.hospital.local/api"
+            - name: VITE_APPOINTMENT_BASE_URL
+              value: "https://api.hospital.local/api"  

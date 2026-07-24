@@ -1,4 +1,4 @@
-import ResponseError from "../classes/response-error.class";
+import ResponseError from "../classes/response-error.class.js";
 
 const paginateResults = async ({
     model,

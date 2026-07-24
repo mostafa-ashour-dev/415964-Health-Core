@@ -40,3 +40,6 @@ spec:
           
             - name: REFRESH_TOKEN_SECRET
               value: b764c6db2616fcf9836b8212b49af0a8873832746a23a07f0d12d30def415cd8caed21425359a28bf464a2b8a9cafde4773e5a71abc4f0c118d6a1b98ab78be4
+
+            - name: APPOINTMENT_SERVICE_BASE_URL
+              value: http://appointment-service:4001  

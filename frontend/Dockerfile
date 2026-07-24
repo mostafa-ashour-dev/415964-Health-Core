@@ -1,8 +1,10 @@
-FROM node:22-alpine
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
 COPY package*.json ./
+
+ENV CYPRESS_INSTALL_BINARY=0
 
 RUN npm install
 
@@ -18,6 +20,11 @@ RUN npm run test:coverage
 
 RUN npm run build
 
-EXPOSE 4173
 
-CMD ["npm","run","preview","--","--host","0.0.0.0"]
+FROM nginx:alpine
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

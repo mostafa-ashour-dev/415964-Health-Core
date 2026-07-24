@@ -1,8 +1,8 @@
-import Timeslot from "../models/schemas/timeslot.model";
-import ResponseError from "../classes/response-error.class";
-import User from "../models/schemas/user.model";
-import returnMissingFields from "../../../../backend/src/utils/missing-fields.util";
-import Appointment from "../models/schemas/appointment.model";
+import Timeslot from "../models/schemas/timeslot.model.js";
+import ResponseError from "../classes/response-error.class.js";
+import User from "../models/schemas/user.model.js";
+import returnMissingFields from "../utils/missing-fields.util.js";
+import Appointment from "../models/schemas/appointment.model.js";
 
 
 const createTimeslot = async (req, res) => {

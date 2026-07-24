@@ -4,8 +4,8 @@ import {
     login,
     refresh,
     register,
-} from "../../controllers/auth.controller";
-import { authUser } from "../../middlewares/auth-user.middleware";
+} from "../../controllers/auth.controller.js";
+import { authUser } from "../../middlewares/auth-user.middleware.js";
 
 const router = Router();
 

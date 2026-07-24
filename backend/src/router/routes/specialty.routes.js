@@ -2,7 +2,7 @@ import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import {
     getSpecialty
-} from "../../controllers/specialty.controller";
+} from "../../controllers/specialty.controller.js";
 
 const router = Router();
 

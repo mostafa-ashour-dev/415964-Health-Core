@@ -1,5 +1,5 @@
-import Specialty from "../models/schemas/specialty.model";
-import ResponseError from "../classes/response-error.class";
+import Specialty from "../models/schemas/specialty.model.js";
+import ResponseError from "../classes/response-error.class.js";
 
 const getSpecialty = async (req, res) => {
     const specialties = await Specialty.find({}).populate("doctors").lean();

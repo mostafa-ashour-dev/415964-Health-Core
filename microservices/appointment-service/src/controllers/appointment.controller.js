@@ -1,11 +1,11 @@
-import Appointment from "../models/schemas/appointment.model";
-import ResponseError from "../classes/response-error.class";
-import User from "../models/schemas/user.model"
-import Specialty from "../models/schemas/specialty.model"
-import Timeslot from "../models/schemas/timeslot.model";
-import generateRandomCode from "../utils/generate-random-code";
-import returnMissingFields from "../../../../backend/src/utils/missing-fields.util";
-import Patient from "../models/schemas/patient.model";
+import Appointment from "../models/schemas/appointment.model.js";
+import ResponseError from "../classes/response-error.class.js";
+import User from "../models/schemas/user.model.js"
+import Specialty from "../models/schemas/specialty.model.js"
+import Timeslot from "../models/schemas/timeslot.model.js";
+import generateRandomCode from "../utils/generate-random-code.js";
+import returnMissingFields from "../utils/missing-fields.util.js";
+import Patient from "../models/schemas/patient.model.js";
 
 
 const createAppointment = async (req, res) => {

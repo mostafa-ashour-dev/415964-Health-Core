@@ -3,8 +3,8 @@ import expressAsyncHandler from "express-async-handler";
 import {
     createPatient,
     getPatients
-} from "../../controllers/patient.controller";
-import { authUser } from "../../middlewares/auth-user.middleware";
+} from "../../controllers/patient.controller.js";
+import { authUser } from "../../middlewares/auth-user.middleware.js";
 
 const router = Router();
 

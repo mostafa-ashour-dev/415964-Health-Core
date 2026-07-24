@@ -1,4 +1,4 @@
-import { NODE_ENV } from "../config/env.config";
+import { NODE_ENV } from "../config/env.config.js";
 
 const errorHandler = (error, req, res, next) => {
     const statusCode = error.statusCode || 500;

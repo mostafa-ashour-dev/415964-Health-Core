@@ -1,6 +1,6 @@
 import axios from "axios";
-import { APPOINTMENT_SERVICE_BASE_URL } from "../config/env.config";
-import ResponseError from "../classes/response-error.class";
+import { APPOINTMENT_SERVICE_BASE_URL } from "../config/env.config.js";
+import ResponseError from "../classes/response-error.class.js";
 
 const proxyToAppointmentService = async (req, res, next) => {
     const targetUrl = `${APPOINTMENT_SERVICE_BASE_URL}${req.originalUrl}`;

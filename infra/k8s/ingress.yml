@@ -1,90 +1,35 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-
 metadata:
   name: hospital-ingress
-
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
-
   ingressClassName: nginx
-
   tls:
     - hosts:
         - hospital.local
         - api.hospital.local
-
       secretName: hospital-tls
-
   rules:
-
     - host: hospital.local
-
       http:
-
         paths:
-
           - path: /
             pathType: Prefix
-
             backend:
               service:
-                name: frontend-service
-
+                name: failover-frontend
                 port:
-                  number: 3000
-
+                  number: 4173
     - host: api.hospital.local
-
       http:
-
         paths:
-
-          - path: /api/auth
+          - path: /api
             pathType: Prefix
-
             backend:
               service:
-                name: backend-service
-
+                name: failover-backend
                 port:
                   number: 5000
-
-          - path: /api/patient
-            pathType: Prefix
-
-            backend:
-              service:
-                name: backend-service
-
-                port:
-                  number: 5000        
-
-          - path: /api/specialty
-            pathType: Prefix
-
-            backend:
-              service:
-                name: backend-service
-
-                port:
-                  number: 5000        
-
-          - path: /api/appointment
-            pathType: Prefix
-
-            backend:
-              service:
-                name: appointment-service
-
-                port:
-                  number: 4001
-
-          - path: /api/timeslot
-            pathType: Prefix
-
-            backend:
-              service:
-                name: appointment-service
-
-                port:
-                  number: 4001

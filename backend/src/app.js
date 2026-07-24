@@ -12,6 +12,10 @@ const origins = [
     "http://localhost:3000",
     "http://localhost:8081",
     "http://localhost:5173",
+    "http://api.hospital.local",
+    "https://api.hospital.local",
+    "http://hospital.local",
+    "https://hospital.local"
 ];
 
 app.use(

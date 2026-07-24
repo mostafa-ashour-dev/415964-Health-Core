@@ -2,9 +2,9 @@ import { Router } from "express";
 const router = Router();
 
 // Routes Imports
-import appointmentRoutes from "./routes/appointment.routes";
-import timeslotRoutes from "./routes/timeslot.routes";
-import attachUser from "../middlewares/attach-user.middleware";
+import appointmentRoutes from "./routes/appointment.routes.js";
+import timeslotRoutes from "./routes/timeslot.routes.js";
+import attachUser from "../middlewares/attach-user.middleware.js";
 
 router.use(attachUser);
 

@@ -1,11 +1,11 @@
-import returnMissingFields from "../utils/missing-fields.util";
-import User from "../models/schemas/user.model";
+import returnMissingFields from "../utils/missing-fields.util.js";
+import User from "../models/schemas/user.model.js";
 import bcrypt from "bcryptjs";
-import ResponseError from "../classes/response-error.class";
+import ResponseError from "../classes/response-error.class.js";
 import slugify from "slugify";
 import crypto from "crypto";
-import { generateToken } from "../utils/generate-token.util";
-import Specialty from "../models/schemas/specialty.model";
+import { generateToken } from "../utils/generate-token.util.js";
+import Specialty from "../models/schemas/specialty.model.js";
 
 const register = async (req, res) => {
     const { full_name, email, password, role } = req.body || {};

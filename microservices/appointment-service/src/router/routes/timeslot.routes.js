@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { Router } from "express";
-import { createTimeslot, getTimeslots } from "../../controllers/timeslot.controller";
+import { createTimeslot, getTimeslots } from "../../controllers/timeslot.controller.js";
 
 
 const router = Router();

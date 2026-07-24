@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import {
     ACCESS_TOKEN_SECRET,
     REFRESH_TOKEN_SECRET,
-} from "../config/env.config";
+} from "../config/env.config.js";
 
 const generateToken = ({ user, type }) => {
     const payload = {
