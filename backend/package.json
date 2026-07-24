@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx jest",
     "start": "node ./src/index.js",
-    "dev": "cross-env DOTENV_SILENT=true nodemon --no-deprecation --exec vite-node src/index.js",
+    "dev": "nodemon --no-deprecation --exec vite-node src/index.js",
     "seed": "node ./src/utils/seed.utils.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
